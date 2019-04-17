@@ -1,9 +1,9 @@
 using System;
 using CsvHelper.Configuration.Attributes;
 
-namespace CallCenterStatistics.Client
+namespace CallCenterStatistics.BLL.DataReaders.Models
 {
-    public class CallCenterStatistic
+    public class CallCenterData
     {
         [Index(0)]
         public DateTime SessionStart { get; set; }

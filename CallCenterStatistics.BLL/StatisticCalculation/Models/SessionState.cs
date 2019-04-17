@@ -1,4 +1,4 @@
-namespace CallCenterStatistics.Client
+namespace CallCenterStatistics.BLL.StatisticCalculation.Models
 {
     public enum SessionState
     {
