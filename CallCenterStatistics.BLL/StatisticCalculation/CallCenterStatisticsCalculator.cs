@@ -17,6 +17,18 @@ namespace CallCenterStatistics.BLL.StatisticCalculation
             return GetMaxActiveSessionsByDaysInternal(sortedCalculationData);
         }
 
+        public IEnumerable<OperatorAvailableStatusesResultData> GetTotalTimeThatOperatorSpentInAvailableStatuses(IEnumerable<CallCenterData> records)
+        {
+            var recordsArray = records.ToArray();
+            var availableStates = recordsArray.Select(i => i.Status).Distinct().ToArray();
+
+            return recordsArray.GroupBy(i => i.Operator).Select(group => new OperatorAvailableStatusesResultData
+            {
+                OperatorName = group.Key,
+                DurationByStatuses = GetDurationByStatuses(availableStates, group)
+            });
+        }
+
         private static IEnumerable<ActiveSessionsCalculationData> ToCalculationData(IEnumerable<CallCenterData> records)
         {
             var calculationData = new List<ActiveSessionsCalculationData>();
@@ -38,7 +50,7 @@ namespace CallCenterStatistics.BLL.StatisticCalculation
             return calculationData;
         }
 
-        private IEnumerable<ActiveSessionsResultData> GetMaxActiveSessionsByDaysInternal(ICollection<ActiveSessionsCalculationData> sortedCalculationData)
+        private static IEnumerable<ActiveSessionsResultData> GetMaxActiveSessionsByDaysInternal(ICollection<ActiveSessionsCalculationData> sortedCalculationData)
         {
             if(!sortedCalculationData.Any())
                 yield break;
@@ -81,6 +93,22 @@ namespace CallCenterStatistics.BLL.StatisticCalculation
         private static bool IsNewDay(DateTime activeDay, DateTime currentDateTime)
         {
             return activeDay.Date < currentDateTime.Date;
+        }
+        
+        private static IEnumerable<DurationByStatus> GetDurationByStatuses(IEnumerable<string> availableStates, IEnumerable<CallCenterData> records)
+        {
+            var durationByStatus = availableStates.ToDictionary(key => key, element => TimeSpan.Zero);
+
+            foreach (var record in records)
+            {
+                durationByStatus[record.Status] += TimeSpan.FromSeconds(record.Duration);
+            }
+
+            return durationByStatus.Select(i => new DurationByStatus
+            {
+                State = i.Key,
+                Duration = i.Value
+            });
         }
     }
 }

@@ -7,5 +7,6 @@ namespace CallCenterStatistics.BLL.StatisticCalculation
     public interface IStatisticsCalculator
     {
         IEnumerable<ActiveSessionsResultData> GetMaxActiveSessionsByDays(IEnumerable<CallCenterData> records);
+        IEnumerable<OperatorAvailableStatusesResultData> GetTotalTimeThatOperatorSpentInAvailableStatuses(IEnumerable<CallCenterData> records);
     }
 }
