@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallCenterStatistics.Client", "CallCenterStatistics.Client\CallCenterStatistics.Client.csproj", "{F52EF14E-3CC5-496E-9C5B-062A9FC76A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterStatistics.BLL", "CallCenterStatistics.BLL\CallCenterStatistics.BLL.csproj", "{069EE964-7AA2-48C7-9D4B-C87553B58D6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallCenterStatistics.BLL", "CallCenterStatistics.BLL\CallCenterStatistics.BLL.csproj", "{069EE964-7AA2-48C7-9D4B-C87553B58D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallCenterStatistics.WebClient", "CallCenterStatistics.WebClient\CallCenterStatistics.WebClient.csproj", "{39C71049-02FD-4A0B-95BF-845831C04DBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{069EE964-7AA2-48C7-9D4B-C87553B58D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{069EE964-7AA2-48C7-9D4B-C87553B58D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{069EE964-7AA2-48C7-9D4B-C87553B58D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C71049-02FD-4A0B-95BF-845831C04DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C71049-02FD-4A0B-95BF-845831C04DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C71049-02FD-4A0B-95BF-845831C04DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C71049-02FD-4A0B-95BF-845831C04DBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
