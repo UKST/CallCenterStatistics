@@ -46,6 +46,11 @@
                     @Html.ActionLink("Max active sessions by days", "MaxActiveSessionsByDays", "Statistics", new { reportFileName = ViewData["FileName"]})
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-10">
+                    @Html.ActionLink("Operators statuses", "OperatorsStatuses", "Statistics", new { reportFileName = ViewData["FileName"]})
+                </div>
+            </div>
         </div>
     </div>
 }

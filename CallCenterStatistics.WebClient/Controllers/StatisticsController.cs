@@ -9,8 +9,8 @@ namespace CallCenterStatistics.WebClient.Controllers
 {
     public class StatisticsController : Controller
     {
-        private IStatisticsCalculator _statisticsCalculator;
-        private IDataReader<CallCenterData> _dataReader;
+        private readonly IStatisticsCalculator _statisticsCalculator;
+        private readonly IDataReader<CallCenterData> _dataReader;
         
         public StatisticsController(
             IStatisticsCalculator statisticsCalculator,
@@ -22,10 +22,23 @@ namespace CallCenterStatistics.WebClient.Controllers
         
         public IActionResult MaxActiveSessionsByDays(string reportFileName)
         {
-            var fullPath = Path.GetTempPath() + reportFileName;
+            var fullPath = GetFullPath(reportFileName);
             var data = _dataReader.Read(fullPath);
             var result = _statisticsCalculator.GetMaxActiveSessionsByDays(data);
             return View(result);
+        }
+        
+        public IActionResult OperatorsStatuses(string reportFileName)
+        {
+            var fullPath = GetFullPath(reportFileName);
+            var data = _dataReader.Read(fullPath);
+            var result = _statisticsCalculator.GetTotalTimeThatOperatorSpentInAvailableStatuses(data);
+            return View(result);
+        }
+
+        private static string GetFullPath(string reportFileName)
+        {
+            return Path.GetTempPath() + reportFileName;
         }
     }
 }

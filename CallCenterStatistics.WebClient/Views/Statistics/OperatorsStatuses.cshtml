@@ -1,0 +1,36 @@
+@model System.Collections.Generic.IEnumerable<CallCenterStatistics.BLL.StatisticCalculation.Models.OperatorAvailableStatusesResultData>
+
+@{
+    ViewData["Title"] = "Operator statuses";
+    var operatorsStatuses = Model.ToArray();
+    var availableStatuses = operatorsStatuses.FirstOrDefault()?.DurationByStatuses?.Select(i => i.State) ?? Enumerable.Empty<string>();
+}
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Operator Name</th>
+        @foreach (var status in availableStatuses)
+        {
+            <th>@status</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var operatorStatuses in operatorsStatuses)
+    {
+        <tr>
+            <td>
+                @operatorStatuses.OperatorName
+            </td>
+            @foreach (var durationByStatus in operatorStatuses.DurationByStatuses)
+            {
+                <td>
+                    @durationByStatus.Duration
+                </td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>
