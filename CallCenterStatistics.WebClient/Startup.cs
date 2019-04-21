@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CallCenterStatistics.BLL.DataReaders;
+using CallCenterStatistics.BLL.DataReaders.Models;
+using CallCenterStatistics.BLL.StatisticCalculation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +33,8 @@ namespace CallCenterStatistics.WebClient
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IDataReader<CallCenterData>, CallCenterDataReader>();
+            services.AddScoped<IStatisticsCalculator, CallCenterStatisticsCalculator>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

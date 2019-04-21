@@ -1,0 +1,27 @@
+@model IEnumerable<CallCenterStatistics.BLL.StatisticCalculation.Models.ActiveSessionsResultData>
+
+@{
+    ViewData["MaxActiveSessionsByDays"] = "Max active sessions by days";
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Max active sessions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Date.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @item.MaxActiveSessionsCount
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
